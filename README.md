@@ -29,11 +29,11 @@ devtools::install_github("mjfrigaard/shinybp")
       - sanity tests  
       - system testing
 2.  Create a demo application for listing features and performing tests
-    - [x] `condXlsxApp` (demo):
-      - The `condXlsxApp` has:
+    - [x] `dataViewApp` (demo):
+      - The `dataViewApp` has:
         1.  modules  
         2.  utility functions  
         3.  conditional UI features  
         4.  uploads  
         5.  downloads  
-      - <https://mjfrigaard.shinyapps.io/condXlsxDemo/>
+      - <https://mjfrigaard.shinyapps.io/dataViewApp/>
