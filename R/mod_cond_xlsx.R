@@ -1,11 +1,16 @@
-# pkgs -----------------------------
-library(shiny)
-library(readxl)
-library(htmltools)
-library(reactable)
-library(stringr)
-
-# UI module ------------------------
+#' Conditional xlsx panel (UI)
+#'
+#' @param id
+#'
+#' @return shiny UI layout
+#' @export mod_cond_xlsx_ui
+#'
+#' @importFrom shiny NS tagList fluidRow
+#' @importFrom shiny column fileInput uiOutput
+#' @importFrom shiny verbatimTextOutput
+#' @importFrom htmltools br strong code
+#' @importFrom reactable reactableOutput
+#'
 mod_cond_xlsx_ui <- function(id) {
   ns <- shiny::NS(id)
   shiny::tagList(
@@ -48,7 +53,22 @@ mod_cond_xlsx_ui <- function(id) {
   )
 }
 
-# Server module ------------------------
+#' Conditional xlsx panel (Server)
+#'
+#' @param id
+#'
+#' @return shiny server
+#' @export mod_cond_xlsx_server
+#'
+#' @importFrom shiny moduleServer NS renderUI
+#' @importFrom shiny renderUI req updateSelectInput
+#' @importFrom shiny reactive observe bindEvent
+#' @importFrom shiny reactiveValuesToList renderPrint
+#' @importFrom htmltools em
+#' @importFrom tools file_ext
+#' @importFrom stringr str_detect
+#' @importFrom readxl excel_sheets
+#' @importFrom reactable reactable reactableOutput
 mod_cond_xlsx_server <- function(id) {
 
     shiny::moduleServer( id, function(input, output, session){
@@ -113,7 +133,7 @@ mod_cond_xlsx_server <- function(id) {
 
     # display imported data
     shiny::observe({
-      req(input$data_import)
+      shiny::req(input$data_import)
     output$display_upload <- reactable::renderReactable(
         reactable::reactable(
           data = imported_data(),

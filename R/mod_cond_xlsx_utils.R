@@ -1,10 +1,14 @@
-# pkgs ------------------------------
-library(vroom)
-library(haven)
-library(readxl)
-library(tibble)
-
-# import_flat_file ------------------------------
+#' Import flat data file
+#'
+#' @param path path to file
+#'
+#' @return imported flat file
+#' @export import_flat_file
+#'
+#' @importFrom vroom vroom
+#' @importFrom haven read_sas read_sav read_dta
+#' @importFrom tibble as_tibble
+#'
 import_flat_file <- function(path) {
   ext <- tools::file_ext(path)
   data <- switch(ext,
@@ -21,7 +25,19 @@ import_flat_file <- function(path) {
   return(return_data)
 }
 
-# import_data ------------------------------
+
+#' Import data
+#'
+#' @param path path to file
+#' @param sheet sheet number or name (if .xlsx)
+#'
+#' @return imported data
+#' @export import_data
+#'
+#' @importFrom tools file_ext
+#' @importFrom readxl read_excel
+#' @importFrom tibble as_tibble
+#'
 import_data <- function(path, sheet = NULL) {
   ext <- tools::file_ext(path)
   if (ext == "xlsx") {
